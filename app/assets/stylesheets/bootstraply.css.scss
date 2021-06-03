@@ -1,0 +1,15 @@
+$navbar-height: 50px;
+$navbar-default-bg: green;
+$jumbotron-bg: gray;
+$navbar-link: purple;
+
+
+
+
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.center {
+    text-align: center;
+}
