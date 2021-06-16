@@ -4,7 +4,14 @@
     <h1>Welcome to my Pintrested Application</h1>
     <p>This is super kool</p>
     <p>I really want to be a good coder</p>
-    <%= link_to "join", root_path, class: 'btn btn-primary'%>
-    <%= link_to "login", root_path, class: 'btn btn-outline-secondary'%>
+
+<% if user_signed_in? %>
+    <%= link_to "logout", destroy_user_session_path, method: :delete, class: 'btn btn-default' %>
+    <%= link_to 'Edit Profile',  edit_user_registration_path, class: 'btn btn-default'%>
+    <% else %>
+    <%= link_to "join", new_user_registration_path, class: 'btn btn-primary'%>
+    <%= link_to "login", new_user_session_path, class: 'btn btn-outline-secondary'%>
+
+  <% end %>
 
 </div>
