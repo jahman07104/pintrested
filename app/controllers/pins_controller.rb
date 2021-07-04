@@ -1,7 +1,7 @@
 class PinsController < ApplicationController
-  before_action :set_pin, only: %i[ show edit update destroy ]
-  # before_action :authenticate_user!, except: %i[index show]
-  before_action :current_user, only: %i[edit update destroy]
+  before_action :set_pin, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :correct_user, only: %i[edit update destroy]
 
   # GET /pins or /pins.json
   def index
@@ -22,7 +22,7 @@ class PinsController < ApplicationController
 
   # GET /pins/1/edit
   def edit
-       @pin = Pin.new
+    @pin = Pin.new
     # respond_with(@pins)
     
   end
@@ -30,9 +30,7 @@ class PinsController < ApplicationController
   # POST /pins or /pins.json
   def create
     @pin = current_user.pins.new(pin_params)
-    
-
-    respond_to do |format|
+      respond_to do |format|
       if @pin.save
         format.html { redirect_to @pin, notice: "Pin was successfully created." }
         format.json { render :show, status: :created, location: @pin }
@@ -58,6 +56,7 @@ class PinsController < ApplicationController
 
   # DELETE /pins/1 or /pins/1.json
   def destroy
+    # @pin = current_user.pins.new(pin_params)
     @pin.destroy
     respond_to do |format|
       format.html { redirect_to pins_url, notice: "Pin was successfully destroyed." }
@@ -73,7 +72,8 @@ class PinsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pin_params
-      params.require(:pin).permit(:description)
+      # @pin = current_user.pins.new(pin_params)
+      params.require(:pin).permit(:description, :image)
     end
 end
 

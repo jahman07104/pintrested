@@ -29,6 +29,9 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 gem 'devise'
+gem 'mimemagic', '~> 0.3.0'
+gem 'paperclip', '~> 6.1'
+
 
 
 group :development, :test do
